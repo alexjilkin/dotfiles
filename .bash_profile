@@ -1,5 +1,3 @@
-#!/usr/local/bin/bash
-
 export PATH="./node_modules/.bin:$PATH"
 export HOMEBREW_CASK_OPTS="--caskroom=/opt/homebrew-cask/Caskroom"
 
@@ -11,18 +9,14 @@ alias ..4="cd ../../../.."
 alias ld="ls -G -lh | grep '^d'"
 alias ll="ls -G -lh"
 alias ls="ls -G"
-alias bin="cd ~/bin"
-alias dev="cd ~/Dev"
+alias repos="cd ~/Documents/repos"
 alias grep="grep --color=always -i "
-alias cs="python manage.py collectstatic --noinput"
-alias rs="python manage.py runserver"
 alias vi="vim"
 
 # homebrew
 alias update_brew="brew update && brew outdated"
 alias upgrade_brew="brew upgrade --all && brew outdated"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export GOPATH="$HOME/anywhere-expert/go"
 
 
 # enable bash compleation
@@ -42,10 +36,8 @@ alias gc-='git checkout -'
 alias gcd='git checkout develop'
 alias gcm='git checkout master'
 alias git_cherrypick='git cherry-pick --signoff -x'
-source ~/.bashrc
-# gl - git commit browser (enter for show, ctrl-d for diff, ` toggles sort)
-# TODO: Add options to seatch all branchs and exact seatch
-gl() {
+
+function gl() {
   local out shas sha q k
   while out=$(
       git log --graph \
@@ -96,23 +88,5 @@ export HISTTIMEFORMAT='%F %T '
 ####################
 # general settings #
 ####################
-[[ $- = *i* ]] && source ~/liquidprompt/liquidprompt
-
-# load virtualenvwrapper for python (after custom PATHs)
-venvwrap="virtualenvwrapper.sh"
-/usr/bin/which -s $venvwrap
-if [ $? -eq 0 ]; then
-    venvwrap=`/usr/bin/which $venvwrap`
-    source $venvwrap
-fi
-
-eval $(dircolors -b $HOME/.dircolors)
 
 export PATH=".:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-export HOME_APP=~/work/soluto-home-app
-export ANDROID_HOME=/Users/$USER/Library/Android/sdk
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
